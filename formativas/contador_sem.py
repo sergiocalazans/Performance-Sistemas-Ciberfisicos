@@ -7,61 +7,62 @@ def down(s):
 def up(s):
   s.release()
 
-def filho1(n, vc, mutex, terminou_filho2, libera_filho2):
+def contP1(n, vc, sem, terminou_contP2, libera_contP2):
     for _ in range (1, n + 1):
         sleep(0.5)
-        down(mutex)
+        down(sem)
         vc.value += 1 # região crítica
         print(f"Filho 1: {vc.value}")
-        up(mutex)
+        up(sem)
 
-    up(libera_filho2)
+    up(libera_contP2)
 
-    down(terminou_filho2)
+    down(terminou_contP2)
     print("Filho 1 chegou no ponto de encontro")
 
-    down(mutex)
+    down(sem)
     print("Fim do filho 1")
-    up(mutex)
+    up(sem)
 
-def filho2(n, vc, mutex, terminou_filho2, libera_filho2):
+def contP2(n, vc, sem, terminou_contP2, libera_contP2):
     
     for i in range(1, n + 1):
        sleep(0.5)
-       down(mutex)
+       down(sem)
        vc.value += 1 # região crítica
        print(f"Filho 2: {vc.value}")
-       up(mutex)
+       up(sem)
 
-       if i == (n //2):
-            down(mutex)
+       if i == (n // 2):
+            down(sem)
             print("Filho 2 está aguardando o filho 1 chegar no ponto de encontro")
-            up(mutex)
-            down(libera_filho2)
+            up(sem)
+            down(libera_contP2)
         
-    up(terminou_filho2)
+    up(terminou_contP2)
     print("Filho 2 chegou no ponto de encontro")
 
-    down(mutex)
+    down(sem)
     print("Fim do filho 2")
-    up(mutex)
+    up(sem)
 
 
 def main():
-    mutex = Semaphore(1)
-    terminou_filho2 = Semaphore(0)
-    libera_filho2 = Semaphore(0)
+    sem = Semaphore(1)
+    terminou_contP2 = Semaphore(0)
+    libera_contP2 = Semaphore(0)
 
     cont1 = Value("i",0,lock=False) 
     cont2 = Value("i",0,lock=False)
 
-    pfilho1 = Process(target=filho1, args=[5, cont1, mutex, terminou_filho2, libera_filho2])
-    pfilho2 = Process(target=filho2, args=[6, cont2, mutex, terminou_filho2, libera_filho2])
+    pfilho1 = Process(target=contP1, args=[5, cont1, sem, terminou_contP2, libera_contP2])
+    pfilho2 = Process(target=contP2, args=[6, cont2, sem, terminou_contP2, libera_contP2])
 
     pfilho1.start()
     pfilho2.start()
     
     print("aguardando filhos")
+    
     pfilho1.join()
     pfilho2.join()
     
