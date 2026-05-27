@@ -1,0 +1,15 @@
+1. P2 lê dado de endereço contido no bloco x
+cache line x de P1: E -> S
+cache line x de P2: I -> S
+
+2. P2 escreve algo em endereço contido no bloco x
+cache line x de P1: S -> I
+cache line x de P2: S -> M
+
+3. P1 escreve algo em endereço contido no bloco x
+cache line x de P1: I -> M
+cache line x de P2: M -> I
+
+4. P2 lê dado de endereço contido no bloco x
+cache line x de P1: M -> S
+cache line x de P2: I -> S
