@@ -2,11 +2,11 @@
 
 Repositório de atividades da disciplina **Performance em Sistemas Ciberfísicos**, do curso de **Bacharelado em Ciência da Computação** da PUCPR.
 
-O material acompanha os temas do plano de ensino de 2026/1, com foco em técnicas de desempenho para sistemas ciberfísicos, considerando hierarquias de memória, processamento paralelo, comunicação e coordenação entre processos e threads.
+O material acompanha os temas com foco em técnicas de desempenho para sistemas ciberfísicos, considerando hierarquias de memória, processamento paralelo, comunicação e coordenação entre processos e threads.
 
 ## Sobre a disciplina
 
-Segundo o plano de ensino, a disciplina tem natureza teórico-prática e trabalha a análise de concorrência e paralelismo em nível de hardware e sistema operacional. Ao longo do semestre, os exercícios e trabalhos exploram como empregar mecanismos de performance de acordo com a situação-problema e com os recursos computacionais disponíveis.
+A disciplina tem natureza teórico-prática e trabalha a análise de concorrência e paralelismo em nível de hardware e sistema operacional. Ao longo do semestre, os exercícios e trabalhos exploram como empregar mecanismos de performance de acordo com a situação-problema e com os recursos computacionais disponíveis.
 
 Temas de estudo:
 
